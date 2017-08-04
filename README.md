@@ -1,2 +1,2 @@
 # ycy88.github.io
-Site repo
+This is the repo for the site.
