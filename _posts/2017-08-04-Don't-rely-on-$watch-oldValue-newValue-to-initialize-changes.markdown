@@ -15,7 +15,7 @@ Consider the following code. There is a portion of HTML we wish to toggle (show 
 
 ```html
 <!-- page.html -->
-<div class="div" ng-if="ctrl.toggleHide">
+<div class="div" ng-if="ctrl.toggleShow">
         <!-- some content that you wish to hide first ... -->
 </div>
 
@@ -27,12 +27,12 @@ So far so good. Here's the JS.
 function MyController($scope, MyService) {
         var vm = this;
 
-        vm.toggleHide = false;
+        vm.toggleShow = false;
 
         $scope.$watch( function () {
             return MyService.id;
         }, function (newValue, oldValue) {
-            vm.toggleHide = true;
+            vm.toggleShow = true;
             console.log('The old value is' + oldValue);
             console.log('The new value is' + newValue);
             console.log('Is old value equals to new value? :' + (oldValue === newValue));
@@ -40,7 +40,7 @@ function MyController($scope, MyService) {
 }
 ```
 
-What you will realise is that upon loading, `toggleHide` will be set to true. The scary part is that `MyService.id` never changed. Your console statements will tell you that `oldValue` is indeed equals to `newValue`. 
+What you will realise is that upon loading, `toggleShow` will be set to true. The scary part is that `MyService.id` never changed. Your console statements will tell you that `oldValue` is indeed equals to `newValue`. 
 
 Instead, you can try to modify your code this way, by setting a default value for `MyService.id`, for instance to the string "abc". And only watch for changes away from this value.
 
@@ -51,7 +51,7 @@ Like so:
 function MyController($scope, MyService) {
         var vm = this;
 
-        vm.toggleHide = false;
+        vm.toggleShow = false;
 
         $scope.$watch( function () {
             return MyService.id; // this will default to "abc"
@@ -59,7 +59,7 @@ function MyController($scope, MyService) {
             if (newValue === "abc") {
                 return
             }
-            vm.toggleHide = true;
+            vm.toggleShow = true;
         });
 }       
 ```
