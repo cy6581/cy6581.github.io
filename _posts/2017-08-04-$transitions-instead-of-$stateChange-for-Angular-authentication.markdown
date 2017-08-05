@@ -7,7 +7,7 @@ categories: angular
 
 A common way of implementing Angular authentication is to add properties to your states, as shown below. 
 
-See examples [here](https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f) and [here](https://solidfoundationwebdev.com/blog/posts/require-authentication-for-certain-routes-with-ui-router-in-angularjs).
+See examples [here](https://medium.com/@mattlanham/authentication-with-angularjs-4e927af3a15f) and [here](https://solidfoundationwebdev.com/blog/posts/require-authentication-for-certain-routes-with-ui-router-in-angularjs). (Note the second part of both examples are outdated).
 
 Notice that on Admin state we add an authenticate property, whereas on the Login state we don't have it - it's meant to be open to all. 
 
