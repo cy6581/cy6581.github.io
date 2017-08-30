@@ -19,4 +19,4 @@ The script gets around creating duplicate workbooks and deleting the extra sheet
 
 Limitations: As we use Google Sheets API, there are some functions that we can't customize. You will notice that exported PDFs have grid lines. They cannot be disabled through the API natively. A work around is to fetch the particular sheet using HTTP requests, as some Stackoverflow-ers have mentioned. 
 
-Another code, for another time. 
+Till next time!
