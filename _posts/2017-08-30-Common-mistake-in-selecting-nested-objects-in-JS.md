@@ -21,7 +21,7 @@ const awesome = {
         },
         jane: {
             password: "abc123",
-            email: "john@example.com"
+            email: "jane@example.com"
         }
         // assume we have other users
     }
@@ -63,6 +63,7 @@ for (let each in awesome.users) {
     let user = awesome.users[each];
     d.findElement(selectors.userIdField).sendKeys(user.email);
     d.findElement(selectors.userPassword).sendKeys(user.password);
+}
 ```
 
 Hope this helps! Till next time.
