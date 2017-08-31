@@ -2,7 +2,7 @@
 layout: post
 title:  JS Scrolling in Angular or Selenium 
 date:   2017-08-31 10:44:07 +0800
-categories: 'HTML' 'Javascript'
+categories: ['HTML', 'Javascript', 'Angular', 'Selenium']
 ---
 
 While making our first MVP I came across the [Angular scroll library](https://github.com/oblador/angular-scroll). 

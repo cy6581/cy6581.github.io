@@ -2,7 +2,7 @@
 layout: post
 title:  Don't rely on $watch oldValue newValue to initialize changes
 date:   2017-08-05 20:13:30 +0800
-categories: angular
+categories: Angular
 ---
 
 TLDR: 

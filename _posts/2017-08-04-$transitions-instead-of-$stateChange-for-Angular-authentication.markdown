@@ -2,7 +2,7 @@
 layout: post
 title:  $transitions instead of $stateChange for Angular authentication
 date:   2017-08-04 20:55:12 +0800
-categories: angular
+categories: Angular
 ---
 
 A common way of implementing Angular authentication is to add properties to your states, as shown below. 
