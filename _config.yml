@@ -19,7 +19,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Sharing stories from the JavaScript world. Angular. NodeJS.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  ycy88
+github_username:  cy6581
 
 # Build settings
 markdown: kramdown
