@@ -1,21 +1,21 @@
 ---
 layout: post
-title:  JS Scrolling in Angular or Selenium 
-date:   2017-08-31 10:44:07 +0800
-categories: ['HTML', 'Javascript', 'Angular', 'Selenium']
+title: JS Scrolling in Angular or Selenium
+date: 2017-08-31 10:44:07 +0800
+categories: ['HTML', 'Javascript', 'Angular', 'Selenium', 'Testing']
 ---
 
-While making our first MVP I came across the [Angular scroll library](https://github.com/oblador/angular-scroll). 
+While making our first MVP I came across the [Angular scroll library](https://github.com/oblador/angular-scroll).
 
-We wanted an 'onclick' function to scroll the screen down to an image loaded dynamically through AJAX. But we didn't know the exact size of the images as they were fetched from Facebook's CDN. 
+We wanted an 'onclick' function to scroll the screen down to an image loaded dynamically through AJAX. But we didn't know the exact size of the images as they were fetched from Facebook's CDN.
 
 The scrollTo() gave us unpredictable results because the image usually rendered after the scroll completed, usually with half of off-screen. How then?
 
 ### Workaround
+
 What we did was to hardscroll the element to page bottom, regardless of size. An easy way to do this was an additional scrollTo() offset of Y pixels below the element.
 
 Recall how offsets work in CSS. With reference to the Window object, it counts the number of pixels below the TOP (y-offset) and number of pixels right of the LEFT (x-offset).
-
 
 ### Under the hood of Angular Scroll
 
@@ -27,27 +27,26 @@ In fact, you may not need Angular Scroll for simple cases.
 
 ### Scrolling in Selenium
 
-I found myself using this in Selenium, when the scrollIntoView() didn't centre the button that I wanted to click properly, which sometimes led to problems clicking. 
+I found myself using this in Selenium, when the scrollIntoView() didn't centre the button that I wanted to click properly, which sometimes led to problems clicking.
 
 [Bill Agee here](http://blog.likewise.org/2015/04/scrolling-to-an-element-with-the-python-bindings-for-selenium-webdriver/) shared a similar way to hardcode an additional scroll offset to centre the element, for Python Selenium bindings.
 
-But this did not capture the edge cases where my buttons are already at the bottom of the page. Initiating an upward scroll (-Y offset) would cover my button. 
+But this did not capture the edge cases where my buttons are already at the bottom of the page. Initiating an upward scroll (-Y offset) would cover my button.
 
-Adding an If-statement to test the button's position solved the issue. Code in NodeJs: 
+Adding an If-statement to test the button's position solved the issue. Code in NodeJs:
 
-```javascript 
+```javascript
 const webd = require('selenium-webdriver');
-const d = new webd.Builder()
-                .withCapabilities(webd.Capabilities.chrome())
-                .build();
+const d = new webd.Builder().withCapabilities(webd.Capabilities.chrome()).build();
 
 let bookbutton = d.wait(webd.until.elementLocated(chosenClass), 15000);
 
-//scrollIntoView default param true, will push the elem to the top of the page 
-d.executeScript("arguments[0].scrollIntoView()", bookbutton);
+//scrollIntoView default param true, will push the elem to the top of the page
+d.executeScript('arguments[0].scrollIntoView()', bookbutton);
 
 // check if button is less than 300px from top, scroll up 350)
-let checkHeightScript = "if(arguments[0].getBoundingClientRect().top < 300){ window.scrollBy(0, -350)}";
+let checkHeightScript =
+	'if(arguments[0].getBoundingClientRect().top < 300){ window.scrollBy(0, -350)}';
 d.executeScript(checkHeightScript, bookbutton);
 bookbutton.click();
 ```
