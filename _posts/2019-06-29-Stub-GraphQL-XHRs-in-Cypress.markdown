@@ -3,6 +3,7 @@ layout: post
 title: Stub GraphQL XHRs in Cypress
 date: 2019-06-28 10:44:07 +0800
 categories: ['HTML', 'Testing']
+# TODO: talk about Amplify, explain which file the code belongs to - see my Github issue
 ---
 
 Cypress is an amazing UI testing tool.
