@@ -3,6 +3,7 @@ layout: post
 title: Stub GraphQL XHRs in Cypress
 date: 2019-06-28 10:44:07 +0800
 categories: ['HTML', 'Testing']
+### TODO: post about XHR
 ---
 
 Cypress is an amazing UI testing tool.
@@ -28,9 +29,9 @@ Enter [xhook](https://github.com/jpillora/xhook), a wonderful library that swaps
 A great place to do this in the Cypress support folder `cypress/support`, which runs before every single spec file is the place to put reusable logic. [Read more about it here](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file). We put them in the `before()` hook, which makes it run before every block of tests (i.e. tests within a describe block).
 
 So we ended with up with this code:
-// cypress/support/index.ts
 
 ```typescript
+// cypress/support/index.ts
 let xHookPackage;
 let graphqlEndpoint='XXXXXXX';
 let mockGraphQLResponsesMap = {
@@ -72,4 +73,4 @@ Cypress.on('window:before:load', win => {
 });
 ```
 
-For an in-depth explanation of how this works, stay tuned!
+For an in-depth explanation of how XHR stubbing works, stay tuned!
