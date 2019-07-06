@@ -3,7 +3,6 @@ layout: post
 title: Stub GraphQL XHRs in Cypress
 date: 2019-06-28 10:44:07 +0800
 categories: ['HTML', 'Testing']
-# TODO: talk about Amplify, explain which file the code belongs to - see my Github issue
 ---
 
 Cypress is an amazing UI testing tool.
@@ -18,15 +17,18 @@ However, it didn't meet our use case. Our team chose to use the AWS Amplify libr
 
 So we needed to stub XHR requests. We have a problem thouh: Cypress cannot stubbing a HTTP endpoint/ URL to return multiple responses. See [the issues](https://github.com/cypress-io/cypress/issues/521).
 
-We typically made multiple GraphQL requests on a single page load - some for data, some of user info, etc. How would we be able then to return different responses using the same endpoint? Cypress.route wasn't working because all the same route responses would only return 1 response, at any given point in time.
+We typically made multiple GraphQL requests on a single page load - some for data, some of user info, etc. How would we be able then to return different responses using the same endpoint? Cypress.route() wasn't working because all the same route responses would only return 1 response, at any given point in time.
 
 We couldn't find a native method in Cypress APIs that would allow us to inspect the XHR's request body somewhere during its lifecycle before it went "inflight" and got intercepted by Cypress' interceptors. And this is critical as we distinguish GraphQL requests by their body.
 
 ### Solution: Custom code to intercept the XHR lifecyle
 
-Enter [xhook](https://github.com/jpillora/xhook), a wonderful library swaps out the global XMLHttpRequest on the browser window and lets you place listeners before the XHR request goes "inflight", i.e. before [XMLHttpRequest.send()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send) is called.
+Enter [xhook](https://github.com/jpillora/xhook), a wonderful library that swaps out the global XMLHttpRequest on the browser window and lets you place listeners before the XHR request goes "inflight", i.e. before [XMLHttpRequest.send()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send) is called.
+
+A great place to do this in the Cypress support folder `cypress/support`, which runs before every single spec file is the place to put reusable logic. [Read more about it here](https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Support-file). We put them in the `before()` hook, which makes it run before every block of tests (i.e. tests within a describe block).
 
 So we ended with up with this code:
+// cypress/support/index.ts
 
 ```typescript
 let xHookPackage;
