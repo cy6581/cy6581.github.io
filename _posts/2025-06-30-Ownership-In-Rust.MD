@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Ownership movement in Rust, and why you can't index certain collections
-date: 2017-06-30 13:07:12 +0800
-categories: Rust
+date: 2025-06-30 13:07:12 +0800
+categories: ["Rust"]
 ---
 
 _This post assumes familiarity with basic Rust concepts like ownership. If you wish to get a refresher, I like the [Rust Brown Book](https://rust-book.cs.brown.edu/title-page.html) as a great resource as it contains many quizzes to test your knowledge_.
@@ -33,8 +33,6 @@ For comparsion, when only one of the conditions are fulfilled, there is no movem
     println!("{}", s1); // no problems here
 ```
 
-[^1]: To be precise, instead of the string `s1` being passed, a mutable reference `s1` is being passed to the `push_str` function. The de-sugared syntax is like so: `String::push_str(&mut s1, " World")`.
-
 Another way of stating the two conditions is that a move happens when we assign or pass data which _does not_ implement the `Copy` trait. Heap data does not implement `Copy`, whereas all primitive scalar data types (i.e. integers, chars, floats, booleans) do.
 
 `Copy` data types will be copied from their slot in the stack frame (loosely speaking, ignoring registers) when they are assigned or passed.
@@ -45,6 +43,8 @@ To clearly contrast the behaviour against `Copy` data types, here is an example 
     let b = a; // the value of `a` is copied to `b`, both own a copy of the value 5
     println!("{}", a); // this line compiles because `a` retains ownership of the value 5
 ```
+
+[^1]: To be precise, instead of the string `s1` being passed, a mutable reference `s1` is being passed to the `push_str` function. The de-sugared syntax is like so: `String::push_str(&mut s1, " World")`.
 
 ### Why you can't index certain collections
 
