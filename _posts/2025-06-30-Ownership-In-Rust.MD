@@ -11,9 +11,9 @@ _This post assumes familiarity with basic Rust concepts like ownership. If you w
 
 When does ownership of data move from one variable to another? Here, I will summarise the necessary conditions for such a move to occur.
 
-Firstly, there either be assignment of data to another variable, or the _passing data as an argument_ to a function.
+Firstly, there must either be the _assignment of data_ to another variable, or the _passing of data_ as an argument to a function.
 
-Secondly, the data in question must be allocated on the _memory heap_, meaning that the data is not stored in stack frames. The most common type of heap data is collection data such as vectors or strings. These are data types that a varying number of values, which can expand and contract in size, and hence will have an unknown size at compile time. Another example of heap data is the `Box<T>` type, which stores data on a heap and makes it available through a pointer.
+Secondly, the data in question must be allocated on the _memory heap_, meaning that the data is not stored in stack frames. The most common type of heap data is collection data such as vectors or strings. These are data types that contain a varying number of values, which can expand and contract in size, and hence will have an unknown size at compile time. Another example of heap data is the `Box<T>` type, which stores data on the heap and makes it available through a pointer.
 
 Only when these two conditions are met is ownership moved.
 
